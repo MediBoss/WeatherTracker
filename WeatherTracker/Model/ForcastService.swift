@@ -24,7 +24,11 @@ class ForecastService{
             let networkProcessor = NetworkProcessor(url: forecastUrl)
             networkProcessor.downloadFromApi { (jsonDictionary) in
                 // TODO Turn JSON Dictionary into swift weather objects
-                let currentWeather = Weather(jsonDictionary: [String : Any])
+                if let currentWeatherDictionary = jsonDictionary?["currently"] as? [String: Any]{
+                    
+                }else{
+                    //do something here
+                }
             }
             
         }
