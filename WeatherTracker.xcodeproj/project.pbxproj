@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63FDA04120B7798C005E8276 /* ForcastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDA04020B7798C005E8276 /* ForcastService.swift */; };
+		63FDA04320B78B52005E8276 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDA04220B78B51005E8276 /* Constants.swift */; };
 		670534CA20A53818009E1853 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670534C920A53818009E1853 /* AppDelegate.swift */; };
 		670534CC20A53818009E1853 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670534CB20A53818009E1853 /* ViewController.swift */; };
 		670534CF20A53818009E1853 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 670534CD20A53818009E1853 /* Main.storyboard */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63FDA04020B7798C005E8276 /* ForcastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastService.swift; sourceTree = "<group>"; };
+		63FDA04220B78B51005E8276 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		670534C620A53818009E1853 /* WeatherTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		670534C920A53818009E1853 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		670534CB20A53818009E1853 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63FDA03F20B7795C005E8276 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				63FDA04020B7798C005E8276 /* ForcastService.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		670534BD20A53818009E1853 = {
 			isa = PBXGroup;
 			children = (
@@ -56,23 +68,17 @@
 		670534C820A53818009E1853 /* WeatherTracker */ = {
 			isa = PBXGroup;
 			children = (
+				63FDA03F20B7795C005E8276 /* Model */,
 				670534DC20A538DE009E1853 /* Networking */,
-				670534DB20A5385E009E1853 /* Model */,
 				670534C920A53818009E1853 /* AppDelegate.swift */,
 				670534CB20A53818009E1853 /* ViewController.swift */,
 				670534CD20A53818009E1853 /* Main.storyboard */,
 				670534D020A5381B009E1853 /* Assets.xcassets */,
 				670534D220A5381B009E1853 /* LaunchScreen.storyboard */,
 				670534D520A5381B009E1853 /* Info.plist */,
+				63FDA04220B78B51005E8276 /* Constants.swift */,
 			);
 			path = WeatherTracker;
-			sourceTree = "<group>";
-		};
-		670534DB20A5385E009E1853 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		670534DC20A538DE009E1853 /* Networking */ = {
@@ -154,8 +160,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63FDA04320B78B52005E8276 /* Constants.swift in Sources */,
 				670534DE20A538F4009E1853 /* NetworkProcessor.swift in Sources */,
 				670534CC20A53818009E1853 /* ViewController.swift in Sources */,
+				63FDA04120B7798C005E8276 /* ForcastService.swift in Sources */,
 				670534CA20A53818009E1853 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
