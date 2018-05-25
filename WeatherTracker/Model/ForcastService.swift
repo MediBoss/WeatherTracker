@@ -17,17 +17,19 @@ class ForecastService{
         baseUrl = URL(string: "https://api.darksky.net/forecast/\(Constants.apiKey)")
     }
     
-    func getForecast(latitude: Double, longitude: Double, completionHandler: @escaping () -> Void){
+    func getForecast(latitude: Double, longitude: Double, completionHandler: @escaping (Weather?) -> Void){
         
-        if let forecastUrl = URL(string: "\(latitude),\(longitude)", relativeTo: baseUrl!){
+        if let forecastUrl = URL(string: "\(baseUrl!)/\(latitude),\(longitude)"){
             
             let networkProcessor = NetworkProcessor(url: forecastUrl)
             networkProcessor.downloadFromApi { (jsonDictionary) in
                 // TODO Turn JSON Dictionary into swift weather objects
                 if let currentWeatherDictionary = jsonDictionary?["currently"] as? [String: Any]{
                     
+                    let currentWeather = Weather(jsonDictionary: currentWeatherDictionary)
+                    completionHandler(currentWeather)
                 }else{
-                    //do something here
+                    completionHandler(nil)
                 }
             }
             

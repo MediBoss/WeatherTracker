@@ -15,7 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        
+        let forecastService = ForecastService(apiKey: Constants.apiKey)
+        forecastService.getForecast(latitude: 37.8267, longitude: -122.4233) { (currentWeather) in
+            print(currentWeather)
+        }
+        
         return true
     }
 
