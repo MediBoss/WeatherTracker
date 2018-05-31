@@ -23,7 +23,7 @@ class NetworkProcessor{
         //@escaping means we are going to return data that we'll later need
         
         let urlRequest = URLRequest(url: self.url)
-        let dataTastk = self.session.dataTask(with: urlRequest) { (data, response, error) in
+        let dataTask = self.session.dataTask(with: urlRequest) { (data, response, error) in
             
             if error == nil{ // if there are no error
                 if let httpResponse = response as? HTTPURLResponse{
@@ -47,6 +47,7 @@ class NetworkProcessor{
             }else{
                 print("Error Found : \(error?.localizedDescription)")
             }
-        }.resume()
+        }
+        dataTask.resume()
     }
 }

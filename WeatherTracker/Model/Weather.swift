@@ -10,16 +10,19 @@ import Foundation
 
 class Weather{
     
-    let temperature: Int?
+    let temperature: Double?
     let summary: String?
+    let timezone: String?
     
-    struct jsonWeatherKeys{
+    struct jsonKeys{
         static let temperatureKey = "temperature"
         static let summaryKey = "summary"
+        static let timezonekey = "timezone"
     }
     
     init(jsonDictionary: [String:Any]){
-       temperature = jsonDictionary[jsonWeatherKeys.temperatureKey] as? Int
-       summary = jsonDictionary[jsonWeatherKeys.summaryKey] as? String
+       temperature = jsonDictionary[jsonKeys.temperatureKey] as? Double
+       summary = jsonDictionary[jsonKeys.summaryKey] as? String
+        timezone = jsonDictionary[jsonKeys.timezonekey] as? String
     }
 }

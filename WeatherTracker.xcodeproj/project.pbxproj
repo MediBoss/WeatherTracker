@@ -10,6 +10,7 @@
 		63FDA04120B7798C005E8276 /* ForcastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDA04020B7798C005E8276 /* ForcastService.swift */; };
 		63FDA04320B78B52005E8276 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDA04220B78B51005E8276 /* Constants.swift */; };
 		63FDA04520B79932005E8276 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDA04420B79932005E8276 /* Weather.swift */; };
+		63FDA04720B7CFA7005E8276 /* Double+String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDA04620B7CFA7005E8276 /* Double+String+Extension.swift */; };
 		670534CA20A53818009E1853 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670534C920A53818009E1853 /* AppDelegate.swift */; };
 		670534CC20A53818009E1853 /* MainMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670534CB20A53818009E1853 /* MainMenuVC.swift */; };
 		670534CF20A53818009E1853 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 670534CD20A53818009E1853 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		63FDA04020B7798C005E8276 /* ForcastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastService.swift; sourceTree = "<group>"; };
 		63FDA04220B78B51005E8276 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		63FDA04420B79932005E8276 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		63FDA04620B7CFA7005E8276 /* Double+String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+String+Extension.swift"; sourceTree = "<group>"; };
 		670534C620A53818009E1853 /* WeatherTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		670534C920A53818009E1853 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		670534CB20A53818009E1853 /* MainMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuVC.swift; sourceTree = "<group>"; };
@@ -43,10 +45,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6378B2D220BF7CEB001216B0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				63FDA04620B7CFA7005E8276 /* Double+String+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		6378B2D320BFB474001216B0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				670534CB20A53818009E1853 /* MainMenuVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6378B2D420BFB4D3001216B0 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				63FDA04220B78B51005E8276 /* Constants.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		63FDA03F20B7795C005E8276 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				63FDA04020B7798C005E8276 /* ForcastService.swift */,
 				63FDA04420B79932005E8276 /* Weather.swift */,
 			);
 			path = Model;
@@ -71,15 +96,16 @@
 		670534C820A53818009E1853 /* WeatherTracker */ = {
 			isa = PBXGroup;
 			children = (
+				6378B2D420BFB4D3001216B0 /* Helper */,
+				6378B2D320BFB474001216B0 /* Controller */,
+				6378B2D220BF7CEB001216B0 /* Extension */,
 				63FDA03F20B7795C005E8276 /* Model */,
 				670534DC20A538DE009E1853 /* Networking */,
 				670534C920A53818009E1853 /* AppDelegate.swift */,
-				670534CB20A53818009E1853 /* MainMenuVC.swift */,
 				670534CD20A53818009E1853 /* Main.storyboard */,
 				670534D020A5381B009E1853 /* Assets.xcassets */,
 				670534D220A5381B009E1853 /* LaunchScreen.storyboard */,
 				670534D520A5381B009E1853 /* Info.plist */,
-				63FDA04220B78B51005E8276 /* Constants.swift */,
 			);
 			path = WeatherTracker;
 			sourceTree = "<group>";
@@ -87,6 +113,7 @@
 		670534DC20A538DE009E1853 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				63FDA04020B7798C005E8276 /* ForcastService.swift */,
 				670534DD20A538F4009E1853 /* NetworkProcessor.swift */,
 			);
 			path = Networking;
@@ -166,6 +193,7 @@
 				63FDA04320B78B52005E8276 /* Constants.swift in Sources */,
 				670534DE20A538F4009E1853 /* NetworkProcessor.swift in Sources */,
 				670534CC20A53818009E1853 /* MainMenuVC.swift in Sources */,
+				63FDA04720B7CFA7005E8276 /* Double+String+Extension.swift in Sources */,
 				63FDA04120B7798C005E8276 /* ForcastService.swift in Sources */,
 				63FDA04520B79932005E8276 /* Weather.swift in Sources */,
 				670534CA20A53818009E1853 /* AppDelegate.swift in Sources */,

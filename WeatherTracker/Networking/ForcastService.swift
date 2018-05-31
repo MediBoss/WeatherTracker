@@ -9,6 +9,7 @@
 import Foundation
 
 class ForecastService{
+    
     let apiKey: String
     let baseUrl: URL?
     
