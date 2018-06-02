@@ -8,8 +8,7 @@
 
 import Foundation
 
-extension Double{
-    
+extension Double{  
     func convertToInt() -> Int{
         return Int(self)
     }
