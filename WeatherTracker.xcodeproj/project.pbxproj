@@ -16,7 +16,6 @@
 		670534CF20A53818009E1853 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 670534CD20A53818009E1853 /* Main.storyboard */; };
 		670534D120A5381B009E1853 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 670534D020A5381B009E1853 /* Assets.xcassets */; };
 		670534D420A5381B009E1853 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 670534D220A5381B009E1853 /* LaunchScreen.storyboard */; };
-		670534DE20A538F4009E1853 /* NetworkProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670534DD20A538F4009E1853 /* NetworkProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +30,6 @@
 		670534D020A5381B009E1853 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		670534D320A5381B009E1853 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		670534D520A5381B009E1853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		670534DD20A538F4009E1853 /* NetworkProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				63FDA04020B7798C005E8276 /* ForcastService.swift */,
-				670534DD20A538F4009E1853 /* NetworkProcessor.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -191,7 +188,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				63FDA04320B78B52005E8276 /* Constants.swift in Sources */,
-				670534DE20A538F4009E1853 /* NetworkProcessor.swift in Sources */,
 				670534CC20A53818009E1853 /* MainMenuVC.swift in Sources */,
 				63FDA04720B7CFA7005E8276 /* Double+String+Extension.swift in Sources */,
 				63FDA04120B7798C005E8276 /* ForcastService.swift in Sources */,

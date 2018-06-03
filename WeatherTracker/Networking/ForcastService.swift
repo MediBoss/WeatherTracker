@@ -10,30 +10,52 @@ import Foundation
 
 class ForecastService{
     
-    let apiKey: String
-    let baseUrl: URL?
+    let complete_url: URL
+    lazy var configuration: URLSessionConfiguration = URLSessionConfiguration.default
+    lazy var session: URLSession = URLSession(configuration: self.configuration)
+    let latitude: Double
+    let longitude: Double
+    typealias WeatherClosure = ((Weather?) -> Void)
     
-    init(apiKey: String){
-        self.apiKey = apiKey
-        baseUrl = URL(string: "https://api.darksky.net/forecast/\(Constants.apiKey)")
-    }
-    
-    func getForecast(latitude: Double, longitude: Double, completionHandler: @escaping (Weather?) -> Void){
+    init(_ latitude: Double, _ longitude: Double) {
         
-        if let forecastUrl = URL(string: "\(baseUrl!)/\(latitude),\(longitude)"){
-            
-            let networkProcessor = NetworkProcessor(url: forecastUrl)
-            networkProcessor.downloadFromApi { (jsonDictionary) in
-                // TODO Turn JSON Dictionary into swift weather objects
-                if let currentWeatherDictionary = jsonDictionary?["currently"] as? [String: Any]{
+        self.latitude = latitude
+        self.longitude = longitude
+        self.complete_url = URL(string: "\(Constants.baseURL)\(Constants.apiKey)" + "/" + "\(latitude)" + "," + "\(longitude)")!
+    }
+
+    func getForecast(_ completionHandler: @escaping WeatherClosure){
+        
+        // make url request
+        let urlRequest: URLRequest = URLRequest(url: self.complete_url)
+        
+        // Create a data task
+        self.session.dataTask(with: urlRequest) { (data, response, error) in
+            // check request response
+            if error == nil{ // if there are no error
+                guard let httpUrlResponse = response as? HTTPURLResponse else {return}
+                switch httpUrlResponse.statusCode{
+                case 200:
+                    guard let data = data else {return}
                     
-                    let currentWeather = Weather(jsonDictionary: currentWeatherDictionary)
-                    completionHandler(currentWeather)
-                }else{
-                    completionHandler(nil)
+                    do{
+                        let jsonDictionary = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any]
+                        if let currentWeatherDictionary = jsonDictionary?["currently"] as? [String: Any]{
+                            let currentWeather = Weather(jsonDictionary: currentWeatherDictionary)
+                            completionHandler(currentWeather)
+                            
+                        }
+                        
+                    }catch let error{
+                        print("ERROR FOUND : \(error.localizedDescription)")
+                    }
+                    
+                default:
+                    print("STATUS CODE : \(httpUrlResponse.statusCode)")
                 }
             }
-            
-        }
+        }.resume()
+
     }
+
 }

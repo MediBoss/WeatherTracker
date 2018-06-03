@@ -12,17 +12,15 @@ class Weather{
     
     let temperature: Double?
     let summary: String?
-    let timezone: String?
+
     
     struct jsonKeys{
         static let temperatureKey = "temperature"
         static let summaryKey = "summary"
-        static let timezonekey = "timezone"
     }
     
     init(jsonDictionary: [String:Any]){
        temperature = jsonDictionary[jsonKeys.temperatureKey] as? Double
        summary = jsonDictionary[jsonKeys.summaryKey] as? String
-        timezone = jsonDictionary[jsonKeys.timezonekey] as? String
     }
 }
