@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630BED2F20F1CA2A00697AF0 /* MainMenuVC + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BED2E20F1CA2A00697AF0 /* MainMenuVC + Extension.swift */; };
 		63FDA04120B7798C005E8276 /* ForcastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDA04020B7798C005E8276 /* ForcastService.swift */; };
 		63FDA04320B78B52005E8276 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDA04220B78B51005E8276 /* Constants.swift */; };
 		63FDA04520B79932005E8276 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDA04420B79932005E8276 /* Weather.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		630BED2E20F1CA2A00697AF0 /* MainMenuVC + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainMenuVC + Extension.swift"; sourceTree = "<group>"; };
 		63FDA04020B7798C005E8276 /* ForcastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForcastService.swift; sourceTree = "<group>"; };
 		63FDA04220B78B51005E8276 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		63FDA04420B79932005E8276 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				63FDA04620B7CFA7005E8276 /* Double+String+Extension.swift */,
+				630BED2E20F1CA2A00697AF0 /* MainMenuVC + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				670534CC20A53818009E1853 /* MainMenuVC.swift in Sources */,
 				63FDA04720B7CFA7005E8276 /* Double+String+Extension.swift in Sources */,
 				63FDA04120B7798C005E8276 /* ForcastService.swift in Sources */,
+				630BED2F20F1CA2A00697AF0 /* MainMenuVC + Extension.swift in Sources */,
 				63FDA04520B79932005E8276 /* Weather.swift in Sources */,
 				670534CA20A53818009E1853 /* AppDelegate.swift in Sources */,
 			);

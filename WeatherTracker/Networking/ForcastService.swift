@@ -11,11 +11,8 @@ import Foundation
 class ForecastService{
     
     let complete_url: URL
-    lazy var configuration: URLSessionConfiguration = URLSessionConfiguration.default
-    lazy var session: URLSession = URLSession(configuration: self.configuration)
     let latitude: Double
     let longitude: Double
-    typealias WeatherClosure = ((Weather?) -> Void)
     
     init(_ latitude: Double, _ longitude: Double) {
         
@@ -24,38 +21,35 @@ class ForecastService{
         self.complete_url = URL(string: "\(Constants.baseURL)\(Constants.apiKey)" + "/" + "\(latitude)" + "," + "\(longitude)")!
     }
 
-    func getForecast(_ completionHandler: @escaping WeatherClosure){
+    func getForecast(_ completionHandler: @escaping (Weather) -> Void){
         
-        // make url request
-        let urlRequest: URLRequest = URLRequest(url: self.complete_url)
-        
-        // Create a data task
-        self.session.dataTask(with: urlRequest) { (data, response, error) in
-            // check request response
-            if error == nil{ // if there are no error
-                guard let httpUrlResponse = response as? HTTPURLResponse else {return}
-                switch httpUrlResponse.statusCode{
+        let request: URLRequest = URLRequest(url: self.complete_url)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if error == nil{
+                guard let httpResponse = response as? HTTPURLResponse else {return}
+                switch httpResponse.statusCode{
                 case 200:
-                    guard let data = data else {return}
-                    
+                    guard let dataReceivedFromWeb = data else {return}
                     do{
-                        let jsonDictionary = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String : Any]
-                        if let currentWeatherDictionary = jsonDictionary?["currently"] as? [String: Any]{
-                            let currentWeather = Weather(jsonDictionary: currentWeatherDictionary)
-                            completionHandler(currentWeather)
-                            
-                        }
+                        let decoder = JSONDecoder()
+                        let weather = try decoder.decode(Weather.self, from: dataReceivedFromWeb)
+                        
+                        completionHandler(weather)
+                        
                         
                     }catch let error{
                         print("ERROR FOUND : \(error.localizedDescription)")
                     }
                     
+                    
                 default:
-                    print("STATUS CODE : \(httpUrlResponse.statusCode)")
+                    print("Error Found : \(httpResponse.statusCode)")
                 }
             }
-        }.resume()
-
+        }
+        task.resume()
     }
 
 }
+
