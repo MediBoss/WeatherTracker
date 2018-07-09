@@ -34,10 +34,7 @@ class ForecastService{
                     do{
                         let decoder = JSONDecoder()
                         let weather = try decoder.decode(Weather.self, from: dataReceivedFromWeb)
-                        
                         completionHandler(weather)
-                        
-                        
                     }catch let error{
                         print("ERROR FOUND : \(error.localizedDescription)")
                     }
@@ -50,6 +47,5 @@ class ForecastService{
         }
         task.resume()
     }
-
 }
 
