@@ -18,12 +18,12 @@ final class MainMenuVC: UIViewController, CLLocationManagerDelegate {
     // -MARK: PROPERTIES
     
     var locationManager = CLLocationManager()
-    //var coordinates: (longitude: Double, latitude: Double) = (0.0,0.0)
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         getUserCoordinates()
+
     }
     
     // -MARK: CLASS METHODS
@@ -57,7 +57,6 @@ final class MainMenuVC: UIViewController, CLLocationManagerDelegate {
         This function updates the user interface with the data received from the API.
     */
     fileprivate func makeNetworkCall(longitude: Double, latitude: Double) -> Void{
-        
         let forecastService = ForecastService(longitude,latitude)
         forecastService.getForecast { (currentWeather) in
                 // UPDATING UI IN THE MAIN THREAD

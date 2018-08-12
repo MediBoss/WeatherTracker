@@ -32,13 +32,12 @@ class ForecastService{
                 case 200:
                     guard let dataReceivedFromWeb = data else {return}
                     do{
-                        let decoder = JSONDecoder()
-                        let weather = try decoder.decode(Weather.self, from: dataReceivedFromWeb)
+                        let decoderObject = JSONDecoder()
+                        let weather = try decoderObject.decode(Weather.self, from: dataReceivedFromWeb)
                         completionHandler(weather)
                     }catch let error{
                         print("ERROR FOUND : \(error.localizedDescription)")
                     }
-                    
                     
                 default:
                     print("Error Found : \(httpResponse.statusCode)")
