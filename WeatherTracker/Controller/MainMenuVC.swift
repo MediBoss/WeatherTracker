@@ -14,6 +14,7 @@ final class MainMenuVC: UIViewController, CLLocationManagerDelegate {
     // -MARK: @IBOULETS
     @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
+     @IBOutlet weak var currentCity: UILabel!
     
     // -MARK: PROPERTIES
     
@@ -50,16 +51,58 @@ final class MainMenuVC: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else {return}
-        let forecastService = ForecastService(locValue.latitude, locValue.longitude)
-        forecastService.getForecast { (currentWeather) in
-            // UPDATING THE UI
+       
+        makeNetworkCall(longitude: locValue.longitude, latitude: locValue.latitude)
+       
+    }
+    /*
+     This function updates the user interface with the data received from the API.
+     */
+    fileprivate func makeNetworkCall(longitude: Double, latitude: Double) -> Void{
+        
+        ForecastService.getForecast(longitude, latitude) { (currentWeather) in
+            
+            self.lookUpCurrentLocation(completionHandler: { (currentPlace) in
+                DispatchQueue.main.async {
+                    self.currentCity.text = currentPlace?.locality
+                }
+            })
+            
+            // UPDATING UI IN THE MAIN THREAD
             DispatchQueue.main.async {
                 guard let weatherSummary = currentWeather.summary, let weatherTemperature = currentWeather.temperature else{return}
-                print(weatherTemperature)
+                // UPDATING THE UI
                 self.summaryLabel.text = weatherSummary
                 self.temperatureLabel.text = weatherTemperature.convertToInt().convertToString() + "°"
             }
         }
     }
+    // convert the geo location into place mark
+    func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?)
+        -> Void ) {
+        // Use the last reported location.
+        if let lastLocation = self.locationManager.location {
+            let geocoder = CLGeocoder()
+            
+            // Look up the location and pass it to the completion handler
+            geocoder.reverseGeocodeLocation(lastLocation,
+                                            completionHandler: { (placemarks, error) in
+                                                if error == nil {
+                                                    let firstLocation = placemarks?[0]
+                                                    completionHandler(firstLocation)
+                                                }
+                                                else {
+                                                    // An error occurred during geocoding.
+                                                    completionHandler(nil)
+                                                }
+                                                
+            })
+        }
+        else {
+            // No location was available.
+            completionHandler(nil)
+        }
+    }
+    
 
 }
