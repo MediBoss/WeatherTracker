@@ -10,20 +10,16 @@ import Foundation
 
 class ForecastService{
     
-    let complete_url: URL
-    let latitude: Double
-    let longitude: Double
+  
     
-    init(_ latitude: Double, _ longitude: Double) {
-        
-        self.latitude = latitude
-        self.longitude = longitude
-        self.complete_url = URL(string: "\(Constants.baseURL)\(Constants.apiKey)" + "/" + "\(latitude)" + "," + "\(longitude)")!
-    }
 
-    func getForecast(_ completionHandler: @escaping (Weather) -> Void){
+    static func getForecast(_ longitude: Double,_ latitude: Double, completionHandler: @escaping (Weather) -> Void){
         
-        let request: URLRequest = URLRequest(url: self.complete_url)
+        let complete_url = URL(string: "\(Constants.baseURL)\(Constants.apiKey)" + "/" + "\(latitude)" + "," + "\(longitude)")!
+        
+        let request: URLRequest = URLRequest(url: complete_url)
+        
+       
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if error == nil{
