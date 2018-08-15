@@ -28,46 +28,38 @@ final class MainMenuVC: UIViewController, CLLocationManagerDelegate {
     
     // -MARK: CLASS METHODS
     
+    
+    /*
+     This function requests permission to get user's location, calculates the location's
+     accuracy, and updates the location frequently.
+     */
+    fileprivate func getUserCoordinates(){
+        
+        self.locationManager.requestAlwaysAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+
     /*
         This Function gets the current user location from the ios device and updates
         The coordinates with realtime and recent location.
      */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        makeNetworkCall(longitude: locValue.longitude, latitude: locValue.latitude)
         
-    }
-    
-    /*
-        This function requests permission to get user's location, calculates the location's
-        accuracy, and updates the location frequently.
-    */
-    fileprivate func getUserCoordinates(){
-        
-         self.locationManager.requestAlwaysAuthorization()
-         if CLLocationManager.locationServicesEnabled() {
-         locationManager.delegate = self
-         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-         locationManager.startUpdatingLocation()
-            
-         }
-    }
-    
-    /*
-        This function updates the user interface with the data received from the API.
-    */
-    fileprivate func makeNetworkCall(longitude: Double, latitude: Double) -> Void{
-        let forecastService = ForecastService(longitude,latitude)
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else {return}
+        let forecastService = ForecastService(locValue.latitude, locValue.longitude)
         forecastService.getForecast { (currentWeather) in
-                // UPDATING UI IN THE MAIN THREAD
-                DispatchQueue.main.async {
-                    guard let weatherSummary = currentWeather.summary, let weatherTemperature = currentWeather.temperature else{return}
-                            // UPDATING THE UI
-                    self.summaryLabel.text = weatherSummary
-                    self.temperatureLabel.text = weatherTemperature.convertToInt().convertToString() + "°"
-                }
+            // UPDATING THE UI
+            DispatchQueue.main.async {
+                guard let weatherSummary = currentWeather.summary, let weatherTemperature = currentWeather.temperature else{return}
+                print(weatherTemperature)
+                self.summaryLabel.text = weatherSummary
+                self.temperatureLabel.text = weatherTemperature.convertToInt().convertToString() + "°"
+            }
         }
     }
- 
-}
 
+}
