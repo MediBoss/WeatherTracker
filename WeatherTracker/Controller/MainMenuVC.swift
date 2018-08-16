@@ -32,8 +32,7 @@ final class MainMenuVC: UIViewController, CLLocationManagerDelegate {
     }
     
     // -MARK: CLASS METHODS
-    
-    
+     
         // From Apple's documentation
         // This function gets the informtaion about the current location(address,city, state)
     fileprivate func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?)-> Void ) {
@@ -65,7 +64,6 @@ final class MainMenuVC: UIViewController, CLLocationManagerDelegate {
         }
     }
 
-    
         //This Function gets the current user location from the device and makes the call to the api
     internal func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         
@@ -80,5 +78,4 @@ final class MainMenuVC: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
-
 }
