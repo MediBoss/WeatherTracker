@@ -27,5 +27,4 @@ struct Weather: Decodable{
         temperature = try weatherValues.decode(Double.self, forKey: .temperature)
         summary = try? weatherValues.decode(String.self, forKey: .summary)
     }
-    
 }
